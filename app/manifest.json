@@ -16,15 +16,14 @@
   },
   "permissions": [
     "tabs",
-    "http://*/*",
-    "https://*/*",
-    "background"
+    "background",
+    "https://damp-cove-16570.herokuapp.com/"
   ],
   "content_scripts": [
     {
       "matches": [
-        "http://*/*",
-        "https://*/*"
+        "http://vk.com/*",
+        "https://vk.com/*"
       ],
       "js": [
         "scripts/contentscript.js"
