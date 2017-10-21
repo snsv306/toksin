@@ -1,0 +1,23 @@
+
+.fc_wrapper {
+    position: relative;
+    width: 15px;
+}
+
+.fc_indicator {
+    border-radius: 50%;
+    background-color: grey;
+    margin: 2px;
+    height: 11px;
+    width: 11px;
+}
+
+.fc_spinner {
+    margin: 2px 2px 2px 4px;
+    height: 11px;
+    width: 7px;
+}
+
+.fc_button {
+    margin: 1px 5px 0 5px;
+}

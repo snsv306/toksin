@@ -14,6 +14,9 @@
       "scripts/background.js"
     ]
   },
+  "web_accessible_resources": [
+    "styles/styles.css"
+  ],
   "permissions": [
     "tabs",
     "background",
@@ -27,6 +30,9 @@
       ],
       "js": [
         "scripts/contentscript.js"
+      ],
+      "css": [
+        "styles/styles.css"
       ],
       "run_at": "document_end",
       "all_frames": false

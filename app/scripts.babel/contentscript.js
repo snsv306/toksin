@@ -1,5 +1,5 @@
 import Spinner from '../bower_components/spin.min'
-import { SEND_MESSAGE } from './constant'
+import { SPINNER_OPT, SEND_MESSAGE, INDICATOR } from './constant'
 
 function makePayload(post) {
     return {
@@ -10,30 +10,36 @@ function makePayload(post) {
 }
 
 function makeIndicator(value) {
-    const ind = document.createElement('div')
-    ind.innerText = value
-    return ind
+    let i = 0
+    while (i < INDICATOR.values.length - 1 && INDICATOR.values[i] < value) {
+        i++
+    }
+
+    const elem = document.createElement('div')
+    elem.className = 'fc_indicator'
+    elem.style.backgroundColor = value ? INDICATOR.colors[i] : 'grey'
+    return elem
 }
 
-const posts = document.querySelectorAll('.post')
-console.log(posts)
-posts.forEach(post => {
-    const button = document.createElement('button')
-    button.innerText = 'x'
+document.querySelectorAll('.post').forEach(post => {
+    const button = document.createElement('div')
+    button.innerText = '?'
+    button.className = 'fc_button'
     button.onclick = () => {
-        const spinner = new Spinner().spin()
-        const divResult = document.createElement('div')
-        button.replaceWith(spinner.el)
+        const spinner = new Spinner(SPINNER_OPT).spin()
+        wrapper.replaceChild(spinner.el, button)
 
         chrome.runtime.sendMessage({
             type: SEND_MESSAGE,
             payload: makePayload(post)
         }, ({ result }) => {
-            result = 0.3
-            divResult.innerText = result
-            spinner.el.replaceWith(divResult)
+            wrapper.replaceChild(makeIndicator(result), spinner.el)
         })
     }
-    post.querySelector('.post_full_like').appendChild(button)
+
+    const wrapper = document.createElement('div')
+    wrapper.className = 'post_reply _reply_wrap fc_wrapper'
+    wrapper.appendChild(button)
+    post.querySelector('.post_full_like').appendChild(wrapper)
 })
 
