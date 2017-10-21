@@ -10,7 +10,8 @@ chrome.runtime.onMessage.addListener(({ type, payload }, sender, sendResponse) =
     if (type === SEND_MESSAGE) {
         (async () => {
             const result = await fetch(makeUrl(payload))
-            sendResponse(result)
+            const parsed = await result.json()
+            sendResponse(parsed)
         })()
     }
     return true
