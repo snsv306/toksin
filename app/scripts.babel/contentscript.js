@@ -1,4 +1,4 @@
-import Spinner from '../bower_components/spin.min'
+import Spinner from '../bower_components/spin'
 import { SPINNER_OPT, SEND_MESSAGE, INDICATOR } from './constant'
 
 function makePayload(post) {

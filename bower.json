@@ -2,6 +2,8 @@
   "name": "factchecking-vk",
   "private": true,
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "spin": "http://spin.js.org/spin.js"
+  },
   "devDependencies": {}
 }
