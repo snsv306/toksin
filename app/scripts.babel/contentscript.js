@@ -2,10 +2,10 @@ import Spinner from '../bower_components/spin'
 import { SPINNER_OPT, SEND_MESSAGE, INDICATOR } from './constant'
 
 function makePayload(post) {
+    const externalLink = post.querySelector('.wall_post_text a') 
     return {
-        text: post.querySelector('.wall_post_text').textContent,
-        link: post.querySelector('a.post_link').href,
-        externalLinks: Array.from(post.querySelectorAll('.wall_post_text a')).map(elem => elem.href)
+        text: post.querySelector('.wall_post_text').childNodes[0].nodeValue,
+        externalLink: externalLink && externalLink.innerText
     }
 }
 
@@ -17,10 +17,9 @@ function makeIndicator(value) {
 
     const elem = document.createElement('div')
     elem.className = 'fc_indicator'
-    elem.style.backgroundColor = value ? INDICATOR.colors[i] : 'grey'
+    elem.style.backgroundColor = !!value ? INDICATOR.colors[i] : 'grey'
     return elem
 }
-
 document.querySelectorAll('.post').forEach(post => {
     const button = document.createElement('div')
     button.innerText = '?'
@@ -42,4 +41,3 @@ document.querySelectorAll('.post').forEach(post => {
     wrapper.appendChild(button)
     post.querySelector('.post_full_like').appendChild(wrapper)
 })
-

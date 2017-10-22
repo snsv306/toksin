@@ -19,7 +19,7 @@
   "permissions": [
     "tabs",
     "background",
-    "https://damp-cove-16570.herokuapp.com/"
+    "https://protected-reef-75719.herokuapp.com/"
   ],
   "content_scripts": [
     {
